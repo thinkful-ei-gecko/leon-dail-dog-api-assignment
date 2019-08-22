@@ -1,19 +1,26 @@
 'use strict';
 
-function displayImages(jsonData) {
+function checkData(jsonData, data) {
   console.log(jsonData);
-  $('#display-images').append(`<div class="dog-pic"><img src="${jsonData.message}" alt="random dog image" /></div>`);
+  let text = '';
+  if (jsonData.status !== 'success') {
+    text = 'We could not find that breed! Try again!';
+  }
+  else {
+    text = `<img src="${jsonData.message}" alt="${data} picture" />`
+  }
+  $('#display-images').html(text);
 }
 function logResponse() {
   $('#dog-api-test').on('submit', e => {
     e.preventDefault();
-    console.log('this far');
-    let timesWeCycle = $('#number-of-pics').val();
-    for (let i=0;i<timesWeCycle;i++) {
-      fetch('https://dog.ceo/api/breeds/image/random')
-        .then(response => response.json())
-        .then(jsonData => displayImages(jsonData));
-    }
+
+    //handle the input data
+    let data = $('#dog-breed-choice').val().toLowerCase();
+    console.log(data);
+    fetch(`https://dog.ceo/api/breed/${data}/images/random`)
+      .then(response => response.json())
+      .then(jsonData => checkData(jsonData, data));
   });
 }
 
