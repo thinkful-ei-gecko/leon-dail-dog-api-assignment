@@ -1,5 +1,9 @@
 'use strict';
 
+function displayImages(jsonData) {
+  console.log(jsonData);
+  $('#display-images').append(`<div class="dog-pic"><img src="${jsonData.message}" alt="random dog image" /></div>`);
+}
 function logResponse() {
   $('#dog-api-test').on('submit', e => {
     e.preventDefault();
@@ -8,7 +12,7 @@ function logResponse() {
     for (let i=0;i<timesWeCycle;i++) {
       fetch('https://dog.ceo/api/breeds/image/random')
         .then(response => response.json())
-        .then(jsonData => console.log(jsonData));
+        .then(jsonData => displayImages(jsonData));
     }
   });
 }
