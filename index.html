@@ -9,11 +9,15 @@
 </head>
 <body>
     <form id="dog-api-test">
+        <h1> Assignment 3</h1>
         <label for="number-of-pics">Please enter the breed of a dog picture you would like to see:</label>
-        <input type="text" value="Enter a dog breed here" id="dog-breed-choice" required="required" />
+        <input type="text" placeholder="Enter a dog breed here" id="dog-breed-choice" required="required" />
         <button type="submit" class="submit-button">Submit</button>
     </form>
-    <section id="display-images"></section>
+    <section id="display-images">
+      <h2 id="info">Results</h2>
+      <div id="results-list"></div>
+    </section>
     <script src="https://code.jquery.com/jquery-3.4.1.js"></script>
     <script src="index.js"></script>
 </body>
